@@ -97,7 +97,7 @@ function renderCalender() {
 
 };
 
-    document.getElementById('schedule').value = "hello";
+    document.getElementById('schedule').value = "todolist";
 
     document.getElementById(`this${viewDate}`).click();
 
@@ -150,7 +150,7 @@ function save(){
   save_draw();
   keyval = keyval + 1;
 
-    document.getElementById('schedule').value = "hello";
+    document.getElementById('schedule').value = "todolist";
 
 
 }
@@ -161,8 +161,8 @@ function save_draw(){
     temp.setAttribute("id", "li"+cnt);
     
     temp.innerHTML = document.getElementById('schedule').value;
-    temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
     temp.innerHTML += "<button style='float: right;' class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyval+">Delete</button>";
+    temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
     document.getElementById('todo_all').appendChild(temp);
     cnt++;
 }
@@ -171,9 +171,6 @@ function save_draw(){
 
 
 function show_draw(){
-
-
-
 
     document.getElementById('todo_all').innerHTML = "";
 
@@ -192,8 +189,8 @@ function show_draw(){
             temp.setAttribute("class", "list-group-item");
             temp.setAttribute("id", "li"+cnt);
             temp.innerHTML = workval;
+            temp.innerHTML += "<button style='float: right;' id="+cnt+" class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyvaltemp+">Delete</button>";
             temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
-            temp.innerHTML += "<button style='float: right;' id="+cnt+" class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyvaltemp+">삭제</button>";
             document.getElementById('todo_all').appendChild(temp);
             cnt++;
     }
