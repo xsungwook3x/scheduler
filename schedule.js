@@ -159,8 +159,10 @@ function save_draw(){
     var temp = document.createElement('li');
     temp.setAttribute("class", "list-group-item");
     temp.setAttribute("id", "li"+cnt);
+    
     temp.innerHTML = document.getElementById('schedule').value;
-    temp.innerHTML += "<button style='float: right;' class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyval+">삭제</button>";
+    temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
+    temp.innerHTML += "<button style='float: right;' class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyval+">Delete</button>";
     document.getElementById('todo_all').appendChild(temp);
     cnt++;
 }
@@ -190,6 +192,7 @@ function show_draw(){
             temp.setAttribute("class", "list-group-item");
             temp.setAttribute("id", "li"+cnt);
             temp.innerHTML = workval;
+            temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
             temp.innerHTML += "<button style='float: right;' id="+cnt+" class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyvaltemp+">삭제</button>";
             document.getElementById('todo_all').appendChild(temp);
             cnt++;
@@ -265,3 +268,4 @@ function goToday() {
 
   renderCalender();
 };
+
