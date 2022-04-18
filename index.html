@@ -1,0 +1,243 @@
+<html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="reset.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+      <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+      <title>Scheduler</title>
+      <style>* {
+        margin: 0;
+        padding: 0;
+        font-family: "Nanum Gothic", sans-serif;
+        box-sizing: border-box;
+      }
+      
+      body {
+        display: flex;
+        /* justify-content: center; */
+        justify-content: left;
+        align-items: center;
+        min-height: 100vh;
+      }
+      
+      .f {
+        width: 600px;
+        margin: 50px;
+      }
+      
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .year-month {
+        font-weight: bold;
+        font-size: 35px;
+        color: rgb(7, 58, 53);
+      }
+      
+      .nav {
+        display: flex;
+        /* border: 1px solid #333333;
+        border-radius: 5px; */
+        border : none;
+    
+      }
+      
+      .nav-btn {
+        width: 28px;
+        height: 30px;
+        border: none;
+        font-size: 16px;
+        line-height: 34px;
+        /* background-color: transparent; */
+        cursor: pointer;
+        background-color: rgb(221, 241, 255);
+        font-weight: bold;
+    
+      }
+    
+      .nav-btn:hover {
+        background-color: rgb(24, 159, 255);
+        color: white;
+      }
+      
+      .go-today {
+        width: 75px;
+        border-left: 1px solid #333333;
+        border-right: 1px solid #333333;
+      }
+      
+      .days {
+        display: flex;
+        margin: 25px 0 10px;
+      }
+      
+      .day {
+        font-weight: bold;
+        width: calc(100% / 7);
+        text-align: center;
+        border-right : none;    
+        border-left : none;
+      }
+      
+      .dates {
+        display: flex;
+        flex-flow: row wrap;
+        height: 500px;
+        /* border-right: 1px solid #333333; */
+        border-right : none;
+        border-left: none;
+    
+      }
+      
+      .date {
+        /* font-weight: bold; */
+        /* background-color: rgb(249, 252, 255); */
+        width: calc(100% / 7);
+        padding: 15px;
+        text-align: right;
+        /* border-bottom: 1px solid #333333;
+        border-left: 1px solid #333333; */
+        border-right : none;
+        border-left: none;
+        border-top: 1px solid #333333; 
+      }
+      
+      .date:hover{
+          background-color: cadetblue;
+          color: white;
+      }
+    
+      .day:nth-child(7n + 1),
+      .date:nth-child(7n + 1) {
+        color: #D13E3E;
+      }
+      
+      
+      .day:nth-child(7n),
+      .date:nth-child(7n) {
+        color: #396EE2;
+      }
+      
+      .date:nth-last-child(-n+7) {
+        border-bottom: 1px solid #333333; 
+    }
+    
+      .other {
+        opacity: 0.3;
+      }
+      
+      .today {
+        position: relative;
+        color: #FFFFFF;
+      }
+      
+      .today::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        width: 30px;
+        height: 30px;
+        display: block;
+        background-color: hsl(0, 88%, 74%);
+        border-radius: 50%;
+        content: '';
+      } 
+    
+      .todo_wrapper {
+        /* float : right; */
+        justify-content: right;
+        font-family: "Nanum Gothic", sans-serif;
+            }
+    
+      #schedule { 
+
+        width : 445px;
+        height : 100px;
+        border : none;
+        background-color: rgb(80, 77, 80);
+        color : white;
+        font-size: 40px;
+        font-family: "Nanum Gothic", sans-serif;
+            }
+    
+      .click{
+        width : 220px;
+        height : 30px;
+        font-size: 15px;
+        font-family: "Nanum Gothic", sans-serif;
+        background-color: rgb(221, 241, 255);
+        font-weight : bold;
+        border:none;
+            }
+            
+      .click:hover{
+        background-color: rgb(24, 159, 255);
+        color: white;
+            }
+    
+      #todaydate{
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+    
+    
+      .mark1{
+        display : none;
+      }
+    
+      .mark2{
+        width: 10px;
+        height: 10px;
+        background-color:rgb(165, 119, 192);
+        margin-top: 20px;
+      }
+
+    .todo_wrapper div{
+        margin : 10px;
+        font-size: 20px;
+    }
+
+    </style>
+    </head>
+    <body>
+        <div class="calendar">
+          <div class="header">
+            <div class="year-month"></div>
+            <div class="nav">
+              <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+              <button class="nav-btn go-today" onclick="goToday()">Today</button>
+              <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+            </div>
+          </div>
+          <table class="main">
+            <tr class="days">
+              <td class="day">일</td>
+              <td class="day">월</td>
+              <td class="day">화</td>
+              <td class="day">수</td>
+              <td class="day">목</td>
+              <td class="day">금</td>
+              <td class="day">토</td>
+            </tr>
+            <td class="dates"></td>
+            </table>
+        </div>
+        <div class="todo_wrapper" id="todo_wrapper">
+          <h3 id="todaydate">2022년 2월 2일</h3>
+          <input type="text" id="schedule"><br>
+          <input type="button" class="click" onclick="save()" value="저장">
+          <!-- <input type="button" class="click" onclick="remove()" value="삭제"> -->
+          <div id="todo_all"></div>
+      </div>
+        <script src="calfinal_retry.js"></script>
+      </body>
+    </html>
