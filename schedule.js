@@ -1,8 +1,11 @@
 let date = new Date();
 let todoArray = new Array();
+let noteArray = new Array();
 let worknum = 1;
 let cnt = 1;
+let cnt1 = 1;
 let todoArraylen = 0;
+let noteArraylen = 0;
 let indexArray = new Array();
 let nowdate = 0;
 let nowvar = 0;
@@ -10,6 +13,7 @@ let nowvarchild = 0;
 let keyval = 0; 
 let keyvaltemp = 0;
 let tempArray = new Array();
+let tempArray1 = new Array();
 let savedone = false;
 
 let viewYear = date.getFullYear();
@@ -197,9 +201,43 @@ function show_draw(){
     
 }
 
+function save_draw_plus(){
+    var temp1 = document.createElement('li');
+    temp1.setAttribute("class", "list-group-item");
+    temp1.setAttribute("id", "li"+cnt1);
+    
+    temp1.innerHTML = document.getElementById('note_write').value;
+    temp1.innerHTML += "<button style='float: right;' class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyval+">Delete</button>";
+    document.getElementById('note_all').appendChild(temp1);
+    cnt1++;
+}
 
+function show_draw_plus(){
 
-
+    document.getElementById('note_all').innerHTML = "";
+  
+    cnt1 = 0;
+  
+  
+  
+    // tempArray1 = noteArray.filter(test => test.date == `${viewYear}-${viewMonth+1}-${nowdate}`);
+    console.log("tempArray", tempArray);
+    for (let i = 0;i <tempArray1.length; i++){
+            workval = tempArray1[i].work;
+  
+            keyvaltemp = tempArray1[i].key; 
+  
+            var temp = document.createElement('h');
+            temp.setAttribute("class", "h-group-item");
+            temp.setAttribute("id", "li"+cnt1);
+            temp.innerHTML = workval;
+            // temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
+            temp.innerHTML += "<button style='float: right;' id="+cnt1+" class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyvaltemp+">Delete</button>";
+            document.getElementById('note_all').appendChild(temp);
+            cnt1++;
+    }
+    
+  }
 
 function remove(event){//clicked_id
 // 입력창 value = NONE;
