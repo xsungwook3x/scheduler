@@ -207,7 +207,7 @@ function save_draw_plus(){
     temp1.setAttribute("id", "li"+cnt1);
     
     temp1.innerHTML = document.getElementById('note_write').value;
-    temp1.innerHTML += "<button style='float: right;' class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyval+">Delete</button>";
+    temp1.innerHTML += "<button style='float: right;' class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyval+">삭제</button>";
     document.getElementById('note_all').appendChild(temp1);
     cnt1++;
 }
@@ -232,7 +232,7 @@ function show_draw_plus(){
             temp.setAttribute("id", "li"+cnt1);
             temp.innerHTML = workval;
             // temp.innerHTML += "<input type='checkbox' style='float: right' id='check'/>";
-            temp.innerHTML += "<button style='float: right;' id="+cnt1+" class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyvaltemp+">Delete</button>";
+            temp.innerHTML += "<button style='float: right;' id="+cnt1+" class='btn btn-outline-secondary' type='button' onclick='remove(this)' value="+keyvaltemp+">삭제</button>";
             document.getElementById('note_all').appendChild(temp);
             cnt1++;
     }
